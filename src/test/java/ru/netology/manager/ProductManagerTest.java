@@ -41,4 +41,39 @@ public class ProductManagerTest {
         Product [] actual = manager.searchBy("Iphone 6S");
         Assertions.assertArrayEquals(expected, actual);
     }
+    @Test
+
+    public void SearchBySmartphoneName() {
+        Product[] expected = new Product[]{product4};
+        Product[] actual = manager.searchBy("Iphone 13");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void SearchByAuthor(){
+        Product[] expected = new  Product[] {product1};
+        Product[] actual = manager.searchBy("Александр Дюма");
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+    @Test
+    public void SearchByInvalidAuthor(){
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Михаил Лермонтов");
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+    @Test
+    public void SearchByManufacturer(){
+        Product[] expected = new  Product[] {product6};
+        Product[] actual = manager.searchBy("Honor");
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+    @Test
+    public void SearchByInvalidManufacturer(){
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Ксяоми");
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
 }

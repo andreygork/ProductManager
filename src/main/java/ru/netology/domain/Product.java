@@ -32,4 +32,12 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+    public boolean matches(String search) {
+        if (this.getName().equalsIgnoreCase(search)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
+

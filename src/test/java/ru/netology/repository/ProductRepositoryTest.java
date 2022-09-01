@@ -17,24 +17,33 @@ public class ProductRepositoryTest {
     Product product5 = new Smartphone(5, "Samsung S21", 69_000, "Samsung");
     Product product6 = new Smartphone(6, "Honor 50", 21_000, "Honor");
 
-    @BeforeEach
-    public void setup(){
+
+    @Test
+    public void ShouldSaveProducts() {
+        repo.save(product1);
+        repo.save(product2);
+        repo.save(product3);
+        Product[] expected = new Product[]{product1, product2, product3};
+        Product[] actual = repo.FindAll();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void ShouldSaveProductsWhen1Product() {
+        repo.save(product3);
+        Product[] expected = new Product[]{product3};
+        Product[] actual = repo.FindAll();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void ShouldRemoveById() {
         repo.save(product1);
         repo.save(product2);
         repo.save(product3);
         repo.save(product4);
         repo.save(product5);
         repo.save(product6);
-    }
-
-    @Test
-    public void ShouldSaveProducts(){
-        Product[] expected  = new Product[] {product1, product2, product3, product4, product5, product6};
-        Product[] actual = repo.FindAll();
-        Assertions.assertArrayEquals(expected, actual);
-    }
-    @Test
-    public void ShouldRemoveById(){
         repo.RemoveById(4);
 
         Product[] expected = new Product[]{product1, product2, product3, product5, product6};
@@ -42,4 +51,10 @@ public class ProductRepositoryTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void ShouldGetEmpty() {
+        Product[] expected = new Product[]{};
+        Product[] actual = repo.FindAll();
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }

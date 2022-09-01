@@ -20,7 +20,7 @@ public class ProductManagerTest {
     Product product6 = new Smartphone(6, "Honor 50", 21_000, "Honor");
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         manager.addProduct(product1);
         manager.addProduct(product2);
         manager.addProduct(product3);
@@ -30,15 +30,23 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void SearchByBookName(){
+    public void SearchByBookName() {
         Product[] expected = new Product[]{product2};
         Product[] actual = manager.searchBy("Белый клык");
         Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
-    public void SearchByInvalidSmartphoneName(){
-        Product [] expected = new Product[]{};
-        Product [] actual = manager.searchBy("Iphone 6S");
+    public void SearchByInvalidSmartphoneName() {
+        Product[] expected = new Product[]{};
+        Product[] actual = manager.searchBy("Iphone 6S");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void SearchByBookNameWhenEmpty() {
+        Product[] expected = new Product[]{};
+        Product[] actual = manager.searchBy("Десять негритят");
         Assertions.assertArrayEquals(expected, actual);
     }
 }
